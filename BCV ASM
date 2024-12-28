@@ -1,0 +1,230 @@
+root@tnrmmcdtps02p~# fcinfo hba-port | xzgrep "HBA Port WWN"
+
+HBA Port WWN: 21000024ff51d37a
+HBA Port WWN: 21000024ff51d37b
+HBA Port WWN: 21000024ff51d3fe
+HBA Port WWN: 21000024ff51d3ff
+HBA Port WWN: 21000024ff51d3d4
+HBA Port WWN: 21000024ff51d3d5
+HBA Port WWN: 21000024ff51d3ec
+HBA Port WWN: 21000024ff51d3ed
+
+
+
+fcinfo remote-port -ls -p 21000024ff51d37a
+fcinfo remote-port -ls -p 21000024ff51d37b
+fcinfo remote-port -ls -p 21000024ff51d3fe
+fcinfo remote-port -ls -p 21000024ff51d3ff
+fcinfo remote-port -ls -p 21000024ff51d3d4
+fcinfo remote-port -ls -p 21000024ff51d3d5
+fcinfo remote-port -ls -p 21000024ff51d3ec
+fcinfo remote-port -ls -p 21000024ff51d3ed
+
+
+
+for i in `cat /tmp/BCV_Lun.txt`; do echo |format |grep -v configured|grep -i "$i"d0|awk '{ print $2 }'; done >> /tmp/BCV_Scan.txt
+for i in `cat /tmp/BCV_Lun.txt`; do echo |format |grep -v configured|grep -i "$i"d0|awk '{ print $2 }'; done >> /tmp/BCV_Scan.txt
+
+for i in `cat /tmp/BCV_Scan.txt`; do ldm ls-services | egrep $i; done
+
+
+
+root@tnrmmcdtps02p:~# cat /tmp/BCV_Scan.txt
+
+0834	SI_ICSS_ora_redo01
+0835	SI_ICSS_ora_redo02
+0836	SI_ICSS_ora_redo03
+08A0	SI_ICSS_oradata10
+08A1	SI_ICSS_oradata11
+08A2	SI_ICSS_oradata12
+08A3	SI_ICSS_oradata13
+08A4	SI_ICSS_oradata14
+08A5	SI_ICSS_oradata15
+08A6	SI_ICSS_oradata16
+08A7	SI_ICSS_oradata17
+08A8	SI_ICSS_oradata18
+08A9	SI_ICSS_oradata19
+08AA	SI_ICSS_oradata20
+08AB	SI_ICSS_oradata21
+08AC	SI_ICSS_oradata22
+08AD	SI_ICSS_oradata23
+08AE	SI_ICSS_oradata24
+08AF	SI_ICSS_oradata25
+08B0	SI_ICSS_oradata26
+08B1	SI_ICSS_oradata27
+08B2	SI_ICSS_oradata28
+08B6	SI_ICSS_oraicssprod
+
+
+
+
+echo |format |grep -i 08A0
+
+///////460. c0t60060E801229710050402971000008A0d0 <HITACHI-OPEN-V      -SUN-8301-10.00GB>
+
+
+/dev/rdsk/c0t60060E80132E250050202E25000000BAd0s2
+ldm ls-services |grep c0t60060E80122971005040297100000835d0
+ldm add-vdsdev /dev/rdsk/c0t60060E80132E250050202E25000000BAd0s2 SI_MIS_BRPF_01@primary-vds2
+ldm add-vdisk SI_MIS_BRPF_01 SI_MIS_BRPF_01@primary-vds2 Hitachi_CCI
+
+
+
+echo |format |grep -i 08A1
+ldm ls-services |grep c0t60060E801229710050402971000008A1d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A1d0s2 SI_ICSS_oradata11@primary-vds2
+ldm add-vdisk SI_ICSS_oradata11 SI_ICSS_oradata11@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08A2
+c0t60060E801229710050402971000008A2d0
+ldm ls-services |grep c0t60060E801229710050402971000008A2d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A2d0s2 SI_ICSS_oradata12@primary-vds2
+ldm add-vdisk SI_ICSS_oradata12 SI_ICSS_oradata12@primary-vds2 Hitachi_CCI
+
+
+echo |format |grep -i 08A3
+
+ldm ls-services |grep c0t60060E801229710050402971000008A3d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A3d0s2 SI_ICSS_oradata13@primary-vds2
+ldm add-vdisk SI_ICSS_oradata13 SI_ICSS_oradata13@primary-vds2 Hitachi_CCI
+
+
+
+echo |format |grep -i 08A4
+
+ldm ls-services |grep  c0t60060E801229710050402971000008A4d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A4d0s2 SI_ICSS_oradata14@primary-vds2
+ldm add-vdisk SI_ICSS_oradata14 SI_ICSS_oradata14@primary-vds2 Hitachi_CCI
+
+
+echo |format |grep -i 08A5
+ldm ls-services |grep c0t60060E801229710050402971000008A5d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A5d0s2 SI_ICSS_oradata15@primary-vds2
+ldm add-vdisk SI_ICSS_oradata15 SI_ICSS_oradata15@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08A6
+
+ldm ls-services |grep c0t60060E801229710050402971000008A6d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A6d0s2 SI_ICSS_oradata16@primary-vds2
+ldm add-vdisk SI_ICSS_oradata16 SI_ICSS_oradata16@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08A7
+ldm ls-services |grep c0t60060E801229710050402971000008A7d0
+ldm add-vdsdev /dev/rdsk/s2 SI_ICSS_oradata17@primary-vds2
+ldm add-vdisk SI_ICSS_oradata17 SI_ICSS_oradata17@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08A8
+ldm ls-services |grep c0t60060E801229710050402971000008A8d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A8d0s2 SI_ICSS_oradata18@primary-vds2
+ldm add-vdisk SI_ICSS_oradata18 SI_ICSS_oradata18@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08A9
+ldm ls-services |grep c0t60060E801229710050402971000008A9d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008A9d0s2 SI_ICSS_oradata19@primary-vds2
+ldm add-vdisk SI_ICSS_oradata19 SI_ICSS_oradata19@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08AA
+ldm ls-services |grep c0t60060E801229710050402971000008AAd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008AAd0s2 SI_ICSS_oradata20@primary-vds2
+ldm add-vdisk SI_ICSS_oradata20 SI_ICSS_oradata20@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08AB
+ldm ls-services |grep c0t60060E801229710050402971000008ABd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008ABd0s2 SI_ICSS_oradata21@primary-vds2
+ldm add-vdisk SI_ICSS_oradata21 SI_ICSS_oradata21@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08AC
+ldm ls-services |grep  c0t60060E801229710050402971000008ACd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008ACd0s2 SI_ICSS_oradata22@primary-vds2
+ldm add-vdisk SI_ICSS_oradata22 SI_ICSS_oradata22@primary-vds2 Hitachi_CCI
+echo |format |grep -i 08AD
+ldm ls-services |grep c0t60060E801229710050402971000008ADd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008ADd0s2 SI_ICSS_oraicssprod@primary-vds2
+ldm add-vdisk SI_ICSS_oradata23 SI_ICSS_oradata23@primary-vds2 Hitachi_CCI
+
+
+echo |format |grep -i 08AE
+ldm ls-services |grep c0t60060E801229710050402971000008AEd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008AEd0s2 SI_ICSS_oradata24@primary-vds2
+ldm add-vdisk SI_ICSS_oradata24 SI_ICSS_oradata24@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08AF
+ldm ls-services |grep c0t60060E801229710050402971000008AFd0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008AFd0s2 SI_ICSS_oradata25@primary-vds2
+ldm add-vdisk SI_ICSS_oradata25 SI_ICSS_oradata25@primary-vds2 Hitachi_CCI
+
+
+echo |format |grep -i 08B0
+ldm ls-services |grep c0t60060E801229710050402971000008B0d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008B0d0s2 SI_ICSS_oradata26@primary-vds2
+ldm add-vdisk SI_ICSS_oradata26 SI_ICSS_oradata26@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08B1
+ldm ls-services |grep  c0t60060E801229710050402971000008B1d0
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008B1d0s2 SI_ICSS_oradata27@primary-vds2
+ldm add-vdisk SI_ICSS_oradata27 SI_ICSS_oradata27@primary-vds2 Hitachi_CCI
+
+echo |format |grep -i 08B2
+ldm ls-services |grep c0t60060E801229710050402971000008B2d0
+ldm add-vdsdev /dev/rdsk/c0t60tachi_CCI060E801229710050402971000008B2d0s2 SI_ICSS_oradata28@primary-vds2
+ldm add-vdisk SI_ICSS_oradata28 SI_ICSS_oradata28@primary-vds2 Hi
+echo |format |grep -i 08B6
+
+c0t60060E801229710050402971000008B6d0
+
+ldm add-vdsdev /dev/rdsk/c0t60060E801229710050402971000008B6d0s2 SI_ICSS_oraicssprod@primary-vds2
+ldm add-vdisk SI_ICSS_oraicssprod SI_ICSS_oraicssprod@primary-vds2 Hitachi_CCI
+
+disk name gula disk.txt rekhe loop chalao
+
+for i in `cat /tmp/disk.txt`; do ldm ls -o disk Hitachi_CCI | egrep $i; done
+
+ldm rm-vdsdev FMS_DATA_08@primary-vds2
+
+root@tnrmmcdtps02p:~# ldm ls -o disk Hitachi_CCI | grep -i SI_ICSS
+    SI_ICSS_ora_redo01 SI_ICSS_ora_redo01@primary-vds2      235  disk@235 primary
+    SI_ICSS_ora_redo02 SI_ICSS_ora_redo02@primary-vds2      236  disk@236 primary
+    SI_ICSS_ora_redo03 SI_ICSS_ora_redo03@primary-vds2      237  disk@237 primary
+    SI_ICSS_oradata11 SI_ICSS_oradata11@primary-vds2      238  disk@238 primary
+    SI_ICSS_oradata12 SI_ICSS_oradata12@primary-vds2      239  disk@239 primary
+    SI_ICSS_oradata13 SI_ICSS_oradata13@primary-vds2      240  disk@240 primary
+    SI_ICSS_oradata14 SI_ICSS_oradata14@primary-vds2      241  disk@241 primary
+    SI_ICSS_oradata15 SI_ICSS_oradata15@primary-vds2      242  disk@242 primary
+    SI_ICSS_oradata17 SI_ICSS_oradata17@primary-vds2      243  disk@243 primary
+    SI_ICSS_oradata18 SI_ICSS_oradata18@primary-vds2      244  disk@244 primary
+    SI_ICSS_oradata19 SI_ICSS_oradata19@primary-vds2      245  disk@245 primary
+    SI_ICSS_oradata20 SI_ICSS_oradata20@primary-vds2      246  disk@246 primary
+    SI_ICSS_oradata21 SI_ICSS_oradata21@primary-vds2      247  disk@247 primary
+    SI_ICSS_oradata22 SI_ICSS_oradata22@primary-vds2      248  disk@248 primary
+    SI_ICSS_oradata23 SI_ICSS_oradata23@primary-vds2      249  disk@249 primary
+    SI_ICSS_oradata24 SI_ICSS_oradata24@primary-vds2      250  disk@250 primary
+    SI_ICSS_oradata25 SI_ICSS_oradata25@primary-vds2      251  disk@251 primary
+    SI_ICSS_oradata26 SI_ICSS_oradata26@primary-vds2      252  disk@252 primary
+    SI_ICSS_oradata27 SI_ICSS_oradata27@primary-vds2      253  disk@253 primary
+    SI_ICSS_oradata28 SI_ICSS_oradata28@primary-vds2      254  disk@254 primary
+    SI_ICSS_oraicssprod SI_ICSS_oraicssprod@primary-vds2      255  disk@255 primary
+
+Sourcing /root/.profile-EIS.....
+root@tnmmhdscci01p # virtinfo -a
+Domain role: LDoms guest
+Domain name: Hitachi_CCI
+Domain UUID: 30b2a2c6-08c1-664e-c524-8a32d22fbd76
+Control domain: tnrmmcdtps02p
+Chassis serial#: AK00181854
+root@tnmmhdscci01p #
+check 1st 235 disk which c2d225s0 file size .
+
+format c2d225
+
+
+echo|format| egrep 'c2d23[6-9]|c2d40[0-9]|c2d41[0-9]|c2d42[0-4]|c2d42[6-9]|c2d43[0-3]'
+
+ehco | format | grep 237
+
+ls -Ln | grep c2d236s0
+mknod SI_ICSS_ora_redo02 c 265 1888
+chmod 775 SI_ICSS_ora_redo02
+chown 500:501 SI_ICSS_ora_redo02
+ls -Ln | grep SI
+ehco | format | grep 237
+ehco | format | grep 237
